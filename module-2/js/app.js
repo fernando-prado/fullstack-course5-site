@@ -57,7 +57,7 @@ function ShoppingListCheckOffService() {
   };
 
   function fillToBuyItems() {
-    return [{name: "Cookies" , quantity: 2},{name: "Apples" , quantity: 3},{name: "Bananas" , quantity: 3},{name: "Coconut Water Bottles" , quantity: 4}];
+    return [{name: "Cookies" , quantity: 2},{name: "Chocolates" , quantity: 2},{name: "Apples" , quantity: 3},{name: "Bananas" , quantity: 3},{name: "Coconut Water Bottles" , quantity: 4}];
   }
 
 }
