@@ -33,9 +33,6 @@ function NarrowItDownController(MenuSearchService) {
   narrowList.errorMessage = "";
 
   narrowList.narrowIt = function () {
-    console.log("inside controller - calling MenuSearchService.getMatchedMenuItems");
-    console.log("term:" + narrowList.searchTerm);
-
     narrowList.title = "NarrowList";
     narrowList.errorMessage = "";
 
@@ -48,10 +45,7 @@ function NarrowItDownController(MenuSearchService) {
     var promise = MenuSearchService.getMatchedMenuItems(narrowList.searchTerm);
 
     promise.then(function (response) {
-      console.log("contoller promise then");
-      console.log('controller then length'+ response.length);
       narrowList.found = response;
-      console.log("controller - narrowList.found");
       if (!narrowList.found.length) {
         narrowList.errorMessage = "Nothing found";
       }
@@ -63,9 +57,7 @@ function NarrowItDownController(MenuSearchService) {
   };
 
   narrowList.removeItem = function (itemIndex) {
-    console.log("removendo item "+itemIndex);
     narrowList.found.splice(itemIndex, 1);
-    console.log("item removido");
     if (!narrowList.found.length) {
       narrowList.errorMessage = "Nothing found";
     }
@@ -79,19 +71,12 @@ function MenuSearchService($http) {
 
   service.getMatchedMenuItems = function (searchTerm) {
     //https://davids-restaurant.herokuapp.com/menu_items.json.
-    console.log('calling API');
     return $http({
       method: "GET",
       url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
     }).then(function (result) {
-      console.log('API RETURNED');
       var returnedItems = result.data.menu_items;
-      console.log('API DATA LENGTH ' + returnedItems.length);
-      console.log('API PROCESSING FOR ' + searchTerm);
       var foundItems = narrowItems(returnedItems, searchTerm);
-      // process result and only keep items that match
-
-      // return processed items WRAPPED IN A PROMISE
       return foundItems;
     });
   };
