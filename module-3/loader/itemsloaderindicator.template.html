@@ -1,0 +1,10 @@
+<h3>{{ narrowList.myTitle }}</h3>
+<ol>
+  <li ng-repeat="item in narrowList.found">
+    {{ item.short_name }} ||
+    {{ item.name }}
+    ({{ item.description }})
+    <button ng-click="narrowList.onRemove({index: $index});">Don't want this one!</button>
+  </li>
+</ol>
+<div class="error">{{ narrowList.errorMessage }}</div>
