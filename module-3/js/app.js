@@ -59,7 +59,8 @@ function NarrowItDownController(MenuSearchService) {
   narrowList.removeItem = function (itemIndex) {
     narrowList.found.splice(itemIndex, 1);
     if (!narrowList.found.length) {
-      narrowList.errorMessage = "Nothing found";
+      narrowList.title = "";
+      //narrowList.errorMessage = "Nothing found";
     }
   };
 
