@@ -1,0 +1,72 @@
+<div ng-controller="RegistrationController as reg">
+  <h1>Sign Up</h1>
+
+  <fieldset>
+    <form name='regForm' novalidate>
+
+      <input type="text" name="firstname" placeholder="First Name"
+        ng-model="reg.user.firstname"
+        required
+        ng-maxlength="20">
+        <!-- {{ reg.user.firstname }} -->
+        <span ng-if="regForm.firstname.$error.maxlength && regForm.firstname.$touched">
+          First name must not be longer than 20 characters
+        </span>
+        <br>
+
+      <input type="text" name="lastname" placeholder="Last Name"
+          ng-model="reg.user.lastname"
+          required
+          ng-maxlength="20">
+          <!-- {{ reg.user.lastname }} -->
+        <span ng-if="regForm.lastname.$error.maxlength && regForm.lastname.$touched">
+            Last name must not be longer than 20 characters
+        </span>
+        <br>
+
+      <input type="email" name="email" placeholder="Email"
+        ng-model="reg.user.email"
+        required>
+        <!-- {{ reg.user.email }} -->
+        <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+          Must be a valid email address: handle@domain format
+        </span>
+        <br>
+
+      <input type="text" name="phone" placeholder="Phone 999-999-9999"
+        ng-model="reg.user.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})">
+        <!-- {{ reg.user.phone }} -->
+        <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+          Phone must be in the format 999-999-9999.
+        </span>
+        <br>
+
+      <input type="text" name="favdish" placeholder="Favorite Dish"
+          ng-model="reg.user.favdish">
+          <!-- {{ reg.user.favdish }} -->
+        <br>
+
+      <button
+        ng-disabled="regForm.$invalid"
+        ng-click="reg.submit()">Submit</button>
+
+        <!-- <div style="margin-top: 10px;">
+          Form valid? {{ regForm.$valid }}
+        </div> -->
+    </form>
+  </fieldset>
+
+  <div id="info" ng-if="reg.completed">
+    Your information has been saved <br>
+    First Name: {{ reg.user.firstname}} <br>
+    Last Name: {{ reg.user.lastname}} <br>
+    Email: {{ reg.user.email}} <br>
+    Phone: {{ reg.user.phone }} <br>
+    Favorite Dish: {{ reg.user.favdish }}
+  </div>
+  <div id="info" ng-if="reg.errorMsg">
+    No such menu number exists<br>
+  </div>
+
+</div>

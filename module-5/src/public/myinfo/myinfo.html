@@ -1,0 +1,19 @@
+<div ng-controller="RegistrationController as reg">
+  <h1>My Info</h1>
+    <div id="info" ng-if="reg.getSignedUser()">
+      {{reg.getSignedUser() | json}} <br>
+
+      <h2>Favorite Menu</h2>
+
+      {{reg.getMenuInfo().name}} <br>
+      {{reg.getMenuInfo().description}} <br>
+      <img width="250" height="150" ng-src="https://rest-server-fprado.herokuapp.com/images/{{reg.getMenuInfo().short_name}}.jpg" alt="{{reg.getMenuInfo().name}}">
+
+    </div>
+    <div id="info" ng-if="!reg.getSignedUser()">
+      Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+    </div>
+
+
+
+</div>
